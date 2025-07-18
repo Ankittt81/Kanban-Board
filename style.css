@@ -5,29 +5,47 @@ body{
     margin: 0;
     padding: 0;
 }
+
 /* ToolBox */
 .toolbox-cont{
-    background-color: #4b4b4b;
+    background: linear-gradient(to right, #2f3542, #57606f);
     height: 5rem;
     display: flex;
     align-items: center;
+    padding: 0 2rem;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid #021b3c;
+    border-radius: 0 0 12px 12px;
 }
 
 .toolbox-priority-cont{
-    background-color: #3d3d3d;
+    background-color: #444;
     height: 3.5rem;
     width: 18rem;
-    margin-left: 4rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
 
 }
+.toolbox-priority-cont:hover {
+    transform: scale(1.02);
+  }
 
 .color-box{
     height: 1.5rem;
     width: 3rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.color-box:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 8px #fff;
+  }
 
 .lightpink{
     background-color: lightpink;
