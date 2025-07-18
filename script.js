@@ -20,16 +20,15 @@ let unlockClass = "fa-lock-open";
 let addtaskflag = false;
 let removeTaskFlag = false;
 
-const ticketsFromLocalStorage=JSON.parse(localStorage.getItem('ticketArr'));
+const ticketsFromLocalStorage = JSON.parse(localStorage.getItem("ticketArr"));
 
-if(ticketsFromLocalStorage){
-    ticketArr=ticketsFromLocalStorage;
+if (ticketsFromLocalStorage) {
+  ticketArr = ticketsFromLocalStorage;
 
-    ticketArr.forEach(function(ticket){
-        createTicket(ticket.id,ticket.TicketTask,ticket.ticketColor);
-    })
+  ticketArr.forEach(function (ticket) {
+    createTicket(ticket.id, ticket.TicketTask, ticket.ticketColor);
+  });
 }
-
 
 //Modal pop-up
 addBtn.addEventListener("click", function () {
@@ -37,6 +36,13 @@ addBtn.addEventListener("click", function () {
 
   if (addtaskflag === true) {
     modalCont.style.display = "flex";
+    textArea.value = "";
+
+    //deactivate remove mode if active
+    if (removeTaskFlag) {
+      removeTaskFlag = false;
+      removeBtn.style.color = "white";
+    }
   } else {
     modalCont.style.display = "none";
   }
@@ -47,6 +53,12 @@ removeBtn.addEventListener("click", function () {
   if (removeTaskFlag) {
     alert("Delete Button is Activated");
     removeBtn.style.color = "red";
+
+    //If modal is open,close it and reset flag
+    if (addtaskflag) {
+      modalCont.style.display = "none";
+      addtaskflag = false;
+    }
   } else {
     alert("Delete Button Deactivated");
     removeBtn.style.color = "white";
@@ -55,7 +67,8 @@ removeBtn.addEventListener("click", function () {
 
 //Generating Ticket
 
-modalCont.addEventListener("keydown", function (e) {
+document.addEventListener("keydown", function (e) {
+  if (!addtaskflag) return;
   let key = e.key;
 
   if (key === "Shift") {
@@ -123,7 +136,7 @@ function handleLock(id, ticket) {
         return ticket.id === id;
       });
       ticketArr[idx].TicketTask = ticketTaskArea.textContent;
-      updateLocalstorage()
+      updateLocalstorage();
     }
   });
 }
@@ -188,6 +201,6 @@ toolBoxColors.forEach(function (colorBox, i) {
   });
 });
 
-function updateLocalstorage(){
-    localStorage.setItem("ticketArr", JSON.stringify(ticketArr));
+function updateLocalstorage() {
+  localStorage.setItem("ticketArr", JSON.stringify(ticketArr));
 }
