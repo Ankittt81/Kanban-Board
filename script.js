@@ -71,7 +71,7 @@ document.addEventListener("keydown", function (e) {
   if (!addtaskflag) return;
   let key = e.key;
 
-  if (key === "Shift") {
+  if (key === "Enter") {
     let task = textArea.value;
     createTicket(null, task, modalPrioritycolor);
   }
